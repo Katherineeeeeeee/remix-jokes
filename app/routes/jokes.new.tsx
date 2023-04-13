@@ -1,28 +1,33 @@
-// import { useActionData } from "@remix-run/react";
+// import { Form, useActionData } from "@remix-run/react";
 // import type { ActionArgs } from "@remix-run/node";
 // import { json, redirect } from "@remix-run/node";
 
 // import { db } from "~/utils/db.server";
 
+// interface IErrors {
+//   name?: string;
+//   content?: string;
+// }
+
 // export async function action({ request }: ActionArgs) {
 //   const form = await request.formData();
 //   const name = form.get("name");
 //   const content = form.get("content");
-//   const errors = {};
 
-//   //validation
-//   if (typeof name !== "string" || name.length < 3) {
-//     errors.name = "That joke's name is too short";
+//   const errors: IErrors = {};
+
+//   const isInvalidName = typeof name !== "string" || name.length < 3;
+//   const isInvalidContent = typeof content !== "string" || content.length < 10;
+
+//   if (isInvalidName || isInvalidContent) {
+//     errors.name = isInvalidName ? "That joke's name is too short" : undefined;
+//     errors.content = isInvalidContent ? "That joke's is too short" : undefined;
+//     return json(errors);
 //   }
 
-//   if (typeof content !== "string" || content.length < 10) {
-//     errors.content = "That joke's is too short";
-//   }
-//   if (Object.keys(errors).length) {
-//     return json(errors, { status: 422 });
-//   }
-
-//   const joke = await db.joke.create({ data: { name, content } });
+//   const joke = await db.joke.create({
+//     data: { name, content },
+//   });
 //   return redirect(`/jokes/${joke.id}`);
 // }
 
@@ -32,7 +37,7 @@
 //   return (
 //     <div>
 //       <p>Add your own hilarious joke</p>
-//       <form action="" method="post">
+//       <Form method="post" action="/jokes/new">
 //         <div>
 //           <label>
 //             Name: <input type="text" name="name" />
@@ -50,7 +55,7 @@
 //         <div>
 //           <button type="submit">Add</button>
 //         </div>
-//       </form>
+//       </Form>
 //     </div>
 //   );
 // }

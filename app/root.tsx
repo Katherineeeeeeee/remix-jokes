@@ -1,4 +1,4 @@
-import { Links, LiveReload, Outlet } from "@remix-run/react";
+import { Links, LiveReload, Outlet, Scripts } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
 import globalStylesUrl from "./styles/global.css";
@@ -35,6 +35,7 @@ export default function App() {
       <body>
         <Outlet />
         <LiveReload />
+        <Scripts />
       </body>
     </html>
   );

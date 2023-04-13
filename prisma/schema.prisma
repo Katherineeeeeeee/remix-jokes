@@ -25,6 +25,6 @@ model Joke {
   updatedAt  DateTime @updatedAt
   name       String
   content    String
-  jokester   User     @relation(references: [id], fields: [jokesterId], "Jokes")
   jokesterId String   @db.ObjectId
+  jokester   User     @relation(references: [id], fields: [jokesterId], "Jokes")
 }

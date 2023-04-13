@@ -11,6 +11,12 @@ export const loader = async () => {
     skip: randomRowNumber,
   });
 
+  if (!randomJoke) {
+    throw new Response("No random joke found", {
+      status: 404,
+    });
+  }
+
   return json({ randomJoke });
 };
 
